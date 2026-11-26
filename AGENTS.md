@@ -122,7 +122,11 @@ CI also runs:
 - [`govulncheck`](https://go.dev/doc/tutorial/govulncheck) on every pull
   request and weekly: `go run golang.org/x/vuln/cmd/govulncheck@latest ./...`.
 - An exported API check against the base branch that fails if an exported
-  symbol is removed or changed incompatibly (rule 1).
+  symbol is removed or changed incompatibly (rule 1). Run it locally with
+  `.github/scripts/apidiff.sh origin/master`.
+- A Conventional Commits check on the pull request title.
+
+Lint, the API check and the title check run on pull requests only.
 
 CI uploads coverage to [Codecov](https://about.codecov.io/), which comments on
 each pull request with the coverage of the changed lines. Overall coverage is
@@ -209,9 +213,12 @@ the tests again.
 - Releases follow [semantic versioning](https://semver.org/) within `v0`: a new
   feature is a minor release (`v0.10.0`), fixes only are a patch (`v0.9.1`).
 - Maintainers cut releases with the `Release` workflow (Actions, Run
-  workflow, enter the version). It creates the tag, publishes a GitHub Release
-  with generated notes grouped by type label and crediting authors, and warms
-  the Go module proxy. Do not create release tags by hand.
+  workflow, enter the version). It runs the tests, checks that the exported API
+  has no incompatible change against `graphql-go/graphql` `v0.8.1` (ignoring the
+  module path rename) or against the latest tag, and that new API comes with a
+  minor version. Then it creates the tag, publishes a GitHub Release with
+  generated notes grouped by type label and crediting authors, and warms the Go
+  module proxy. Do not create release tags by hand.
 - Release notes live in GitHub Releases; there is no `CHANGELOG.md`.
 - Tags are immutable. Never delete, move or re-push a published tag; the Go
   module proxy caches every version permanently. To withdraw a bad release, add
