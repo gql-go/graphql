@@ -1,5 +1,6 @@
 # graphql
 
+[![CI](https://github.com/gql-go/graphql/actions/workflows/ci.yml/badge.svg)](https://github.com/gql-go/graphql/actions/workflows/ci.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/gql-go/graphql.svg)](https://pkg.go.dev/github.com/gql-go/graphql)
 
 A code-first implementation of GraphQL in Go, following the official reference
