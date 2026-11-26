@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/graphql-go/graphql/gqlerrors"
-	"github.com/graphql-go/graphql/language/ast"
+	"github.com/gql-go/graphql/gqlerrors"
+	"github.com/gql-go/graphql/language/ast"
 )
 
 // customUnknownASTType implements ast.Type with a non-standard kind,

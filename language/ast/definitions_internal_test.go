@@ -3,7 +3,7 @@ package ast
 import (
 	"testing"
 
-	"github.com/graphql-go/graphql/language/kinds"
+	"github.com/gql-go/graphql/language/kinds"
 )
 
 func TestDefConstructors_NilInput(t *testing.T) {

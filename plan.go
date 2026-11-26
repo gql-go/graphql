@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/graphql-go/graphql/gqlerrors"
-	"github.com/graphql-go/graphql/language/ast"
+	"github.com/gql-go/graphql/gqlerrors"
+	"github.com/gql-go/graphql/language/ast"
 )
 
 // Plan is a precomputed execution shape for a (schema, document,

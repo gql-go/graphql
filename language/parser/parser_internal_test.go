@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/graphql-go/graphql/language/lexer"
-	"github.com/graphql-go/graphql/language/source"
+	"github.com/gql-go/graphql/language/lexer"
+	"github.com/gql-go/graphql/language/source"
 )
 
 func makeTestParser(t *testing.T, src string) *Parser {

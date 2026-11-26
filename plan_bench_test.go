@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/graphql-go/graphql"
-	"github.com/graphql-go/graphql/benchutil"
-	"github.com/graphql-go/graphql/language/parser"
-	"github.com/graphql-go/graphql/language/source"
+	"github.com/gql-go/graphql"
+	"github.com/gql-go/graphql/benchutil"
+	"github.com/gql-go/graphql/language/parser"
+	"github.com/gql-go/graphql/language/source"
 )
 
 // BenchmarkPlannedExecute_* compare a cached *Plan re-executed N times

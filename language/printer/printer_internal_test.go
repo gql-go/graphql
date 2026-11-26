@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/graphql-go/graphql/language/ast"
-	"github.com/graphql-go/graphql/language/visitor"
+	"github.com/gql-go/graphql/language/ast"
+	"github.com/gql-go/graphql/language/visitor"
 )
 
 func TestGetMapValue_Internal(t *testing.T) {

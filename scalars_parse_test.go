@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/graphql-go/graphql"
-	"github.com/graphql-go/graphql/language/ast"
+	"github.com/gql-go/graphql"
+	"github.com/gql-go/graphql/language/ast"
 )
 
 func TestTypeSystem_Scalar_ParseValueOutputDateTime(t *testing.T) {

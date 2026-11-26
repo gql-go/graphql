@@ -3,7 +3,7 @@ package ast_test
 import (
 	"testing"
 
-	"github.com/graphql-go/graphql/language/ast"
+	"github.com/gql-go/graphql/language/ast"
 )
 
 func TestSchemaDefinition(t *testing.T) {

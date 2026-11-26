@@ -5,7 +5,7 @@ import (
 	"hash/fnv"
 	"strconv"
 
-	"github.com/graphql-go/graphql/language/ast"
+	"github.com/gql-go/graphql/language/ast"
 )
 
 // normalizeDocument walks the given operation in `doc`, replacing

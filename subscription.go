@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/graphql-go/graphql/gqlerrors"
-	"github.com/graphql-go/graphql/language/parser"
-	"github.com/graphql-go/graphql/language/source"
+	"github.com/gql-go/graphql/gqlerrors"
+	"github.com/gql-go/graphql/language/parser"
+	"github.com/gql-go/graphql/language/source"
 )
 
 // SubscribeParams parameters for subscribing
