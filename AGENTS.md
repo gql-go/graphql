@@ -32,6 +32,9 @@ behaving the same way.
 
 - Changes are additive: a new field on a config struct, a new function next to
   the existing one. Never remove or change the signature of an exported symbol.
+  As in the [Go 1 compatibility promise](https://go.dev/doc/go1compat), unkeyed
+  literals of exported structs (`ScalarConfig{a, b}`) are not covered, so adding
+  a field is compatible; `go vet` reports such literals.
 - **A change in behaviour is opt-in.** It is enabled through explicit
   configuration (a new config field, option or function); the default stays as
   it was. This applies to bug fixes too when existing users may depend on the
@@ -87,14 +90,28 @@ go build ./...
 go vet ./...
 go test ./...
 
-# Race detector and coverage, as CI runs it:
+# Race detector:
+go test -race ./...
+
+# Coverage, as CI measures it (examples and test helpers excluded):
 PKGS=$(go list ./... | grep -vE '/examples/|/benchutil$|/testutil$|/language/ast$')
-go test -race -coverpkg="$(echo "$PKGS" | paste -sd, -)" -coverprofile=coverage.out $PKGS
+go test -coverpkg="$(echo "$PKGS" | paste -sd, -)" -coverprofile=coverage.out ./...
 go tool cover -func=coverage.out | tail -1
 ```
 
 Run `go vet ./...` and `go test ./...` before opening a pull request, and the
 race detector when the change touches concurrency, caching or shared state.
+
+On Windows, `examples/httpdynamic` does not build (`syscall.SIGUSR1`) and
+`TestRace` needs a C toolchain. Use WSL, or run:
+
+```sh
+GOOS=linux go vet ./...
+go test $(go list ./... | grep -v /examples/httpdynamic)
+```
+
+and expect `TestRace` to fail without a C toolchain; CI runs everything on
+Linux.
 
 CI also runs:
 
@@ -110,9 +127,6 @@ CI also runs:
 CI uploads coverage to [Codecov](https://about.codecov.io/), which comments on
 each pull request with the coverage of the changed lines. Overall coverage is
 around 95%; new code is expected to be covered by tests, error paths included.
-
-On Windows, `TestRace` needs a C toolchain and `examples/httpdynamic` does not
-build (`syscall.SIGUSR1`); both pass in CI on Linux.
 
 ## Code conventions
 
