@@ -135,9 +135,15 @@ please open an issue if something here matters to you.
 
 - [ ] Distinguish an explicit `null` argument from an omitted one.
 - [ ] Strict serialization: an enum or scalar value that cannot be serialized
-      becomes a field error instead of a silent `null`.
+      (including an `Int` outside 32 bits) becomes a field error instead of a
+      silent `null`.
+- [ ] Scalars can report a serialization error, through a serialize function
+      that returns one.
+- [ ] Strict default resolver: a field it cannot find on the source becomes an
+      error instead of a silent `null`.
 - [ ] Coercion of variables and default values aligned with the current
-      specification.
+      specification, including a single value passed to a list argument through
+      a variable.
 
 ### 2. Building blocks
 
@@ -147,8 +153,10 @@ please open an issue if something here matters to you.
 - [ ] Structured errors: first-class `extensions` and a hook to present or mask
       errors.
 - [ ] Selection look-ahead: a simple API for a resolver to see which fields were
-      requested below it.
+      requested below it, enough for an ORM to load only those.
 - [ ] Access to the parent field's arguments from a child resolver.
+- [ ] Custom validation rules in `Do`, so adding a rule no longer means
+      rewriting the parse-validate-execute pipeline.
 
 ### 3. Security
 
@@ -156,6 +164,8 @@ please open an issue if something here matters to you.
 - [ ] Validation limits: a cap on reported errors.
 - [ ] Ready-made rules: maximum depth, maximum aliases, disable introspection.
 - [ ] Query cost analysis, with a cost per field.
+- [ ] Persisted and trusted documents: execute only operations registered in
+      advance, identified by hash.
 
 ### 4. Specification catch-up
 
@@ -177,8 +187,13 @@ September 2025 edition:
 Introspection for all of the above (`isRepeatable`, `specifiedByURL`, `isOneOf`,
 `includeDeprecated` on arguments and input fields).
 
+- [ ] A conformance suite ported from the `graphql-js` tests, to measure and
+      protect specification compliance.
+
 ### 5. Performance
 
+- [ ] Document cache in `Do`: parse and validate a repeated operation once,
+      building on `PlanCache`.
 - [ ] Batching (DataLoader) dispatched by the executor.
 - [ ] Opt-in parallel execution of sibling fields.
 - [ ] Fewer allocations and less reflection in the default resolver and in list
@@ -190,13 +205,17 @@ Introspection for all of the above (`isRepeatable`, `specifiedByURL`, `isOneOf`,
       enums bound to a Go type.
 - [ ] Built-in `JSON` and `Int64` scalars, and a companion package with common
       ones (`UUID`, `Decimal`, `Date`).
+- [ ] Optional package to derive object and input types from Go structs and
+      their tags.
 
 ### 7. Ecosystem
 
 - [ ] Schema utilities: print a schema as SDL, build a schema from SDL, and
       detect breaking changes between two schemas.
-- [ ] HTTP transport package: GraphQL over HTTP, `graphql-transport-ws`,
-      server-sent events and persisted queries.
+- [ ] HTTP transport, in [`gql-go/handler`](https://github.com/gql-go/handler):
+      the GraphQL over HTTP specification (`application/graphql-response+json`
+      and status codes), `graphql-transport-ws`, server-sent events and
+      persisted queries.
 - [ ] Apollo Federation v2 subgraph support.
 - [ ] OpenTelemetry instrumentation.
 - [ ] `@defer` and `@stream`, once the proposal is stable.
