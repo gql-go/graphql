@@ -9,10 +9,6 @@ implementation [`graphql-js`](https://github.com/graphql/graphql-js).
 This is a community-maintained continuation of
 [`graphql-go/graphql`](https://github.com/graphql-go/graphql).
 
-> **Status:** no release has been tagged under the new module path yet.
-> `v0.9.0` will be the first, and will include everything merged upstream after
-> `v0.8.1`.
-
 ## Why this repository exists
 
 `graphql-go/graphql` was created by [Hafiz Ismail](https://github.com/sogko) and
